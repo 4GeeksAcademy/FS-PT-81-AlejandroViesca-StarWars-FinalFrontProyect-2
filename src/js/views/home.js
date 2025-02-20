@@ -1,15 +1,26 @@
-import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
-import "../../styles/home.css";
+import React, { useContext, useEffect } from "react";
 
-export const Home = () => (
-	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
-	</div>
-);
+import "../../styles/home.css";
+import { Context } from "../store/appContext";
+import { Card } from "../component/card.jsx";
+
+export const Home = () => {
+	const {store, actions} = useContext(Context)
+
+	return(
+		<div className="container mt-5">
+			<section className="row d-flex justify-content-center">
+				<h2>People</h2>
+				{
+					store.people?.map(el => 
+					<Card 
+						key={el.uid} 
+						name={el.name} 
+						uid={el.uid} 
+						img={`https://starwars-visualguide.com/assets/img/characters/${el.uid}.jpg`}
+					/>)
+				}
+			</section>
+		</div>
+	);
+}
