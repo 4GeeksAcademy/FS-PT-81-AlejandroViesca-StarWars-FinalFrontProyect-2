@@ -5,9 +5,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 			data: [],
 			planets: [],
 			starships: [],
+			favorites: [],
 			selected: {}
 		},
 		actions: {
+			addRemoveFav: async (fav) => {
+				const store = getStore();
+				const isFavourite = store.favorites.some(el => el.uid === fav.uid && el.type === fav.type)
+
+				if(isFavourite){
+					setStore({
+						favorites: store.favorites.filter(el=> !(el.uid === fav.uid && el.type === fav.type))
+					})
+				}else {
+					setStore({favorites: [...store.favorites, fav]})
+				}
+			},
+
 			getData: async (type) => {
 				try {
 					const resp = await fetch(`${getStore().url}/${type}`);

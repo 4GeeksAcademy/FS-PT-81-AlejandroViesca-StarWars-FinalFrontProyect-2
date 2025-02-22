@@ -10,6 +10,9 @@ export const Home = () => {
 	return (
 		<div className="container mt-5">
 
+			<h2>Las imagenes no funcionan pq la web de SW esta muerta :/</h2>
+			<hr/>
+
 			<section className="row d-flex justify-content-center">
 				<h2>People</h2>
 				{
@@ -49,7 +52,7 @@ export const Home = () => {
 							name={el.name}
 							type={'starships'}
 							uid={el.uid}
-							img={`https://starwars-visualguide.com/assets/img/planets/${el.uid}.jpg`}
+							img={`https://starwars-visualguide.com/assets/img/starships/${el.uid}.jpg`}
 						/>
 					)
 				}

@@ -1,14 +1,17 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, {useContext} from "react";
 
 import { Context } from "../store/appContext";
 
-export const PlanetsDetails = () => {
+export const PlanetsDetails = (props) => {
     
     const { store, actions } = useContext(Context);
 
     return(
         <div className="card" style={{width: '18rem'}}>
-            <img src="..." className="card-img-top text-align-center" alt="..."/>
+            <img 
+                src={`https://starwars-visualguide.com/assets/img/${props.type}/${props.uid}.jpg`}
+                className="card-img-top text-align-center" alt={store.selected?.properties?.name}
+            />
 
             <div className="card-body">
                 <h3 className="card-title">{store.selected?.properties?.name}</h3>

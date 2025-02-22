@@ -19,9 +19,9 @@ export const Details = () => {
 
 	return (
 		<div className="container">
-			{params.type === 'people' && <PeopleDetails/>}
-			{params.type === 'planets' && <PlanetsDetails/>}
-			{params.type === 'starships' && <StarshipsDetails/>}
+			{params.type === 'people' && <PeopleDetails type={'character'} uid={params.uid}/>}
+			{params.type === 'planets' && <PlanetsDetails type={params.type} uid={params.uid}/>}
+			{params.type === 'starships' && <StarshipsDetails type={params.type} uid={params.uid}/>}
 		</div>
 	);
 };
