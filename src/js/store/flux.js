@@ -2,18 +2,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			url: 'https://swapi.tech/api/',
-			people: [],
-			character: {}
+			data: [],
+			planets: [],
+			starships: [],
+			selected: {}
 		},
 		actions: {
-			getPeople: async () => {
+			getData: async (type) => {
 				try {
-					const resp = await fetch(getStore().url+'people');
+					const resp = await fetch(`${getStore().url}/${type}`);
 
-					if(!resp.ok) throw new Error('Error get people');
+					if(!resp.ok) throw new Error('Error get data');
 
 					const data = await resp.json()
-					setStore({people: data.results})
+					setStore({[type]: data.results})
 
 				} catch (error) {
 					console.error(error);
@@ -21,19 +23,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			getOnePeople: async (uid) => {
+			getOneData: async (type, uid) => {
 				try {
-					const resp = await fetch(getStore().url+'people/'+ uid);
+					const resp = await fetch(`${getStore().url}/${type}/${uid}`);
 
-					if(!resp.ok) throw new Error('Error get one people');
+					if(!resp.ok) throw new Error('Error get one data');
 
 					const data = await resp.json()
-					setStore({character: data.result})
+					setStore({selected: data.result})
 
 				} catch (error) {
 					console.error(error);
 				}
-			}
+			},
 
 		}
 	};

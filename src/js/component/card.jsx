@@ -8,7 +8,7 @@ export const Card = props => {
             <div className="card-body">
                 <h5 className="card-title">{props.name}</h5>
 
-                <Link to={'/details/' + props.uid}>
+                <Link to={`/details/${props.type}/${props.uid}`}>
                     <button className="btn btn-primary">Learn More</button>
                 </Link>
 
